@@ -1,0 +1,21 @@
+body {
+    background-color: #3A506B;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    background-color: #FFFBEB;
+    margin-top: 100px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+.container > div {
+    padding: 10px;
+    padding-top: 25px;
+    border: 1px solid #e6e2d3;
+}
+
+
+
