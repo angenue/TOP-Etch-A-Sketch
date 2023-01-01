@@ -20,7 +20,7 @@ body {
 }
 
 .container > div {
-    cursor: pointer;
+    cursor: crosshair;
     border: 1px solid #F6F9FA;
 }
 
