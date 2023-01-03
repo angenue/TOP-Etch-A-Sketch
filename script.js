@@ -1,4 +1,5 @@
 const container = document.querySelector('.container');
+//const grid = document.querySelector('.sqaure');
 const slider = document.getElementById("myRange");
 const output = document.getElementById("demo");
 
@@ -11,6 +12,8 @@ for (let i = 1; i <= defaultGrid; i++) {  //creates 32 by 32 square divs
 }
 
 output.innerHTML = slider.value; //displaying value
+
+
 slider.oninput = function () { //changes number when slider is moved
     output.innerHTML = this.value;
 
@@ -31,10 +34,15 @@ for (let i = 1; i <= squareGrid; i++) {
     newDiv.className = 'square';
     container.appendChild(newDiv);
 
-    container.style.gridTemplateColumns = 'repeat(' + this.value +', 1fr)';
+    container.style.gridTemplateColumns = 'repeat(' + this.value +', 1fr)'; //changes row amount
 }
 
 };
+
+//changes color of divs to black on click
+container.addEventListener('click', (event) => { //event delegation. Using container instead of each grid
+    event.target.style.backgroundColor = 'black'
+})
 
 
 document.appendChild(container);
