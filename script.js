@@ -2,6 +2,11 @@ const container = document.querySelector('.container');
 //const grid = document.querySelector('.sqaure');
 const slider = document.getElementById("myRange");
 const output = document.getElementById("demo");
+const solidColor = document.getElementById("solid");
+const rainbowColor = document.getElementById("rainbow");
+
+
+let mouseDown = false;
 
 const defaultGrid = 32 * 32;
 for (let i = 1; i <= defaultGrid; i++) {  //creates 32 by 32 square divs
@@ -39,10 +44,28 @@ for (let i = 1; i <= squareGrid; i++) {
 
 };
 
+changeToSolid(); //default when reload
+solidColor.addEventListener('click', changeToSolid); //when button is clicked
+
+
+
 //changes color of divs to black on click
-container.addEventListener('click', (event) => { //event delegation. Using container instead of each grid
+function changeToSolid() {
+container.addEventListener('mousedown', (event) => { //event delegation. Using container instead of each grid
     event.target.style.backgroundColor = 'black'
+    mouseDown = true;
+    container.addEventListener("mousemove", (event) => {
+        if (mouseDown) {
+            event.target.style.backgroundColor = 'black'
+        }
+      });
 })
+
+container.addEventListener("mouseup", () => {
+    // console.log("up");
+    mouseDown = false;
+  });
+}
 
 
 document.appendChild(container);
