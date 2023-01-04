@@ -1,12 +1,12 @@
 const container = document.querySelector(".container");
 const slider = document.getElementById("myRange");
 const output = document.getElementById("demo");
-const solidColor = document.getElementById("solid").addEventListener("click", changeToSolid);
+const solidColor = document.getElementById("solid")//.addEventListener("click", changeToSolid);
 const rainbowColor = document.getElementById("rainbow").addEventListener("click", changeToRainbow);
 const eraseButton = document.getElementById("erase").addEventListener("click", eraseGrid);
 const resetButton = document.getElementById("reset").addEventListener("click", resetGrid);
 
-changeToSolid(); //default color
+changeToDefault(); //default black color
 let mouseDown = false; //for mouse event listeners
 output.innerHTML = slider.value; //displaying slider value
 const defaultGrid = 32 * 32; //grid default value
@@ -41,8 +41,10 @@ slider.oninput = function () {
   container.style.gridTemplateColumns = "repeat(" + this.value + ", 1fr)"; //changes row amount
 };
 
+
+
 //changes color of divs to black on click
-function changeToSolid() {
+function changeToDefault() {
   container.addEventListener("mousedown", (event) => {
     //event delegation. Using container instead of each grid
     event.target.style.backgroundColor = "black";
@@ -57,6 +59,26 @@ function changeToSolid() {
     mouseDown = false;
   });
 }
+
+//changes color based on color input
+solidColor.oninput = function () {
+  solidColor.addEventListener('click', () => {
+    container.addEventListener("mousedown", (event) => {
+      //event delegation. Using container instead of each grid
+      event.target.style.backgroundColor = this.value;
+      mouseDown = true;
+      container.addEventListener("mousemove", (event) => {
+        if (mouseDown) {
+          event.target.style.backgroundColor = this.value;
+        }
+      });
+    });
+    container.addEventListener("mouseup", () => {
+      mouseDown = false;
+    });
+  })
+  }
+
 
 //changes color of divs to rainbow on click
 function changeToRainbow() {
@@ -102,5 +124,6 @@ function resetGrid() {
     (child) => (child.style.backgroundColor = "white")
   );
 }
+
 
 document.appendChild(container);
