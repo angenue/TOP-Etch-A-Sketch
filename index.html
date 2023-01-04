@@ -13,19 +13,21 @@
 </head>
 <body>
 
-    <div class="container"></div>
+    <h1 class="title">Etch-A-Sketch</h1>
 
-    <div class="colors">
-        <input type="color" class="colorChoice" id="solid" value="#00000">
-        <button type="button" class="colorChoice" id="rainbow"></button>
-        
-    </div>
+    <div class="container"></div>
 
     <div class="options">
             <input type="range" min="1" max="64" value="32" class="slider" id="myRange">
             <span id="demo"></span>
-          <button type="button" id="reset">Reset</button>
-          <button type="button" id="erase">Eraser</button>
+          <button type="button" class='optionButton' id="reset">Reset</button>
+          <button type="button" class='optionButton' id="erase">Eraser</button>
+    </div>
+
+    <div class="colors">
+        <button type="button" class="colorChoice" id="rainbow"></button>
+        <input type="color" class="colorChoice" id="solid" value="#00000">
+
     </div>
     
 </body>
