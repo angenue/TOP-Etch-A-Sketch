@@ -21,8 +21,8 @@ body {
     margin: auto;
     box-shadow: 2px 8px 13px -3px rgba(116, 114, 114, 0.75);
 
-    width: 860px;
-    height: 860px;
+    width: 500px;
+    height: 500px;
 }
 
 .container > div {
