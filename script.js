@@ -1,13 +1,25 @@
+let currentColor = 'black';
+
+
 const container = document.querySelector(".container");
 const slider = document.getElementById("myRange");
 const output = document.getElementById("demo");
 const solidColor = document.getElementById("solid")//.addEventListener("click", changeToSolid);
-const rainbowColor = document.getElementById("rainbow").addEventListener("click", changeToRainbow);
-const eraseButton = document.getElementById("erase").addEventListener("click", eraseGrid);
-const resetButton = document.getElementById("reset").addEventListener("click", resetGrid);
+const rainbowColor = document.getElementById("rainbow")//.addEventListener("click", changeToRainbow);
+const eraseButton = document.getElementById("erase")//.addEventListener("click", eraseGrid);
+const resetButton = document.getElementById("reset")//.addEventListener("click", resetGrid);
 
-changeToDefault(); //default black color
+
+solidColor.oninput = (e) => changeColor(e.target.value);
+solidColor.onclick = (e) => changeColor(e.target.value);
+rainbowColor.onclick = () => changeColor('rainbow');
+eraseButton.onclick = () => changeColor('white');
+
 let mouseDown = false; //for mouse event listeners
+//document.body.onmousedown = () => (mouseDown = true)
+//document.body.onmouseup = () => (mouseDown = false)
+
+
 output.innerHTML = slider.value; //displaying slider value
 const defaultGrid = 32 * 32; //grid default value
 
@@ -34,24 +46,50 @@ slider.oninput = function () {
   const squareGrid = this.value * this.value; //taking slider value to get grid size
   for (let i = 1; i <= squareGrid; i++) {
     const newDiv = document.createElement("div");
-    newDiv.id = "square" + i;
     newDiv.className = "square";
     container.appendChild(newDiv);
   }
   container.style.gridTemplateColumns = "repeat(" + this.value + ", 1fr)"; //changes row amount
 };
 
+container.addEventListener("mousedown", (e) => {
+  if (currentColor === "rainbow") {
+    e.target.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%`;
+  } else {
+    e.target.style.backgroundColor = currentColor;
+  }
+  mouseDown = true;
 
+  container.addEventListener("mouseover", (e) => {
+    if (mouseDown) {
+      if (currentColor === "rainbow") {
+        e.target.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%`;
+      } else {
+        e.target.style.backgroundColor = currentColor;
+      }
+    }
+  });
+})
+container.addEventListener("mouseup", () => {
+  mouseDown = false;
+});
+
+  
+
+
+function changeColor(colorChoice) {
+  currentColor = colorChoice;
+}
 
 //changes color of divs to black on click
-function changeToDefault() {
+/*function changeToDefault() {
   container.addEventListener("mousedown", (event) => {
     //event delegation. Using container instead of each grid
-    event.target.style.backgroundColor = "black";
+    event.target.style.backgroundColor = "#333333";
     mouseDown = true;
-    container.addEventListener("mousemove", (event) => {
+    container.addEventListener("mouseover", (event) => {
       if (mouseDown) {
-        event.target.style.backgroundColor = "black";
+        event.target.style.backgroundColor = "#333333";
       }
     });
   });
@@ -67,7 +105,7 @@ solidColor.oninput = function () {
       //event delegation. Using container instead of each grid
       event.target.style.backgroundColor = this.value;
       mouseDown = true;
-      container.addEventListener("mousemove", (event) => {
+      container.addEventListener("mouseover", (event) => {
         if (mouseDown) {
           event.target.style.backgroundColor = this.value;
         }
@@ -88,7 +126,7 @@ function changeToRainbow() {
       Math.random() * 360
     }, 100%, 50%)`;
     mouseDown = true;
-    container.addEventListener("mousemove", (event) => {
+    container.addEventListener("mouseover", (event) => {
       if (mouseDown) {
         event.target.style.backgroundColor = `hsl(${
           Math.random() * 360
@@ -107,7 +145,7 @@ function eraseGrid() {
     //event delegation. Using container instead of each grid
     event.target.style.backgroundColor = "white";
     mouseDown = true;
-    container.addEventListener("mousemove", (event) => {
+    container.addEventListener("mouseover", (event) => {
       if (mouseDown) {
         event.target.style.backgroundColor = "white";
       }
@@ -116,14 +154,14 @@ function eraseGrid() {
   container.addEventListener("mouseup", () => {
     mouseDown = false;
   });
-}
+} */
 
 //erases grid by changing all divs to white
 function resetGrid() {
   container.childNodes.forEach(
     (child) => (child.style.backgroundColor = "white")
   );
-}
+} 
 
 
 document.appendChild(container);
