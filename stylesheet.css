@@ -75,7 +75,7 @@ top: 80px;
 #rainbow {
     width: 100px;
   height:100px;
-  border: solid 2px #ddd;
+  border: solid 3px #F3F4F5;
   border-radius: 50%;
   overflow:hidden;
         
@@ -104,7 +104,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 	padding: 0;
 }
 input[type="color"]::-webkit-color-swatch {
-	border: solid 1px #ddd; /*change color of the swatch border here*/
+
 	border-radius: 50%;
 }
 
@@ -116,6 +116,7 @@ input[type='color']:hover {
 .options {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 15px;
 
     align-items: center;
@@ -164,4 +165,42 @@ input[type='color']:hover {
     background-color: #74dbe2b0;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
+  }
+
+  @media screen and (max-width: 500px) {
+    .container {
+        width: 300px;
+        height: 300px;
+    }
+
+    .options {
+        gap: 55px;
+    }
+
+    .title {
+        position: relative;
+        font-size: 40px;
+    }
+
+    .slider, #demo {
+        position: relative;
+        bottom: 20px;
+    }
+
+    #demo {
+        position: relative;
+        right: 20px;
+        font-size: 20px;
+    }
+
+    .optionButton {
+        position: relative;
+        bottom: 55px;
+    }
+
+    .colors{
+        position: relative;
+        top: 12px;
+    }
+
   }
