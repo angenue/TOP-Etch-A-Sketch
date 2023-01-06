@@ -16,11 +16,11 @@ rainbowColor.onclick = () => changeColor("rainbow");
 eraseButton.onclick = () => changeColor("white");
 
 createGrid(defaultGrid); //creating default grid
-output.innerHTML = slider.value; //displaying slider value
+output.innerHTML = slider.value + ' x ' + slider.value; //displaying slider value
 
 //changes number when slider is moved and creates new grid
 slider.oninput = function () {
-  output.innerHTML = this.value; //displays new value
+  output.innerHTML = this.value +' x ' +this.value; //displays new value
   const value = ((this.value - this.min) / (this.max - this.min)) * 100; //changes slider color
   this.style.background =
     "linear-gradient(to right, #FFDE55 0%, #74DAE2 " + value +"%, #fff " +value +"%, #fff 100%)";
