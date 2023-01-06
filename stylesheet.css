@@ -4,6 +4,7 @@ body {
     margin: 0;
     width: 100%;
     background-color: #F6F9FA;
+    overflow: hidden;
 
     font-family: 'Oswald', sans-serif;
 }
@@ -169,12 +170,8 @@ input[type='color']:hover {
 
   @media screen and (max-width: 500px) {
     .container {
-        width: 300px;
-        height: 300px;
-    }
-
-    .options {
-        gap: 55px;
+        width: 400px;
+        height: 400px;
     }
 
     .title {
@@ -182,25 +179,59 @@ input[type='color']:hover {
         font-size: 40px;
     }
 
-    .slider, #demo {
+    .slider {
+        margin-left: 100px;
+        position: relative;
+        bottom: 20px; 
+    }
+
+    #demo {
+        margin-right: 100px;
         position: relative;
         bottom: 20px;
     }
 
-    #demo {
-        position: relative;
-        right: 20px;
-        font-size: 20px;
-    }
-
     .optionButton {
         position: relative;
-        bottom: 55px;
+        bottom: 15px;
     }
 
-    .colors{
+    #erase{
+margin-left: 30px;
+    }
+
+    #reset{
+        margin-right: 30px;
+    }
+
+    .colors {
         position: relative;
-        top: 12px;
+        top: 60px;
+        gap: 70px;
+    }
+
+  }
+
+  @media screen and (max-width: 400px) {
+    .container {
+        width: 300px;
+        height: 300px;
+    }
+
+    .slider {
+        margin-left: 50px;   
+    }
+
+    #demo {
+        margin-right: 40px;
+        position: relative;
+        bottom: 20px;
+    }
+
+    .colors {
+        position: relative;
+        top: 50px;
+        gap: 70px;
     }
 
   }
